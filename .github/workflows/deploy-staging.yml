@@ -41,7 +41,34 @@ jobs:
         docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:staging-latest
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:staging-latest
     
-    - name: Deploy to ECS
+    - name: Check if ECS cluster exists
+      id: check-cluster
       run: |
-        aws ecs update-service --cluster iscoolgpt-staging --service iscoolgpt-api-staging --force-new-deployment --region us-east-1
+        if aws ecs describe-clusters --clusters iscoolgpt-staging --region us-east-1 --query 'clusters[0].status' --output text 2>/dev/null | grep -q ACTIVE; then
+          echo "cluster_exists=true" >> $GITHUB_OUTPUT
+        else
+          echo "cluster_exists=false" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Deploy to ECS (if cluster exists)
+      if: steps.check-cluster.outputs.cluster_exists == 'true'
+      run: |
+        # Verificar se o serviço existe
+        if aws ecs describe-services --cluster iscoolgpt-staging --services iscoolgpt-api-staging --region us-east-1 --query 'services[0].status' --output text 2>/dev/null | grep -q ACTIVE; then
+          echo "Atualizando serviço ECS..."
+          aws ecs update-service --cluster iscoolgpt-staging --service iscoolgpt-api-staging --force-new-deployment --region us-east-1
+        else
+          echo "⚠️ Serviço ECS 'iscoolgpt-api-staging' não existe ainda. Configure a infraestrutura ECS primeiro."
+        fi
+    
+    - name: Warning - ECS infrastructure not ready
+      if: steps.check-cluster.outputs.cluster_exists == 'false'
+      run: |
+        echo "⚠️ Cluster ECS 'iscoolgpt-staging' não existe ainda."
+        echo "✅ A imagem Docker foi construída e enviada para o ECR com sucesso!"
+        echo "📝 Próximos passos:"
+        echo "   1. Crie o cluster ECS: aws ecs create-cluster --cluster-name iscoolgpt-staging --region us-east-1"
+        echo "   2. Configure VPC, Security Groups, ALB e Task Definitions"
+        echo "   3. Crie o serviço ECS"
+        echo "   4. O próximo deploy irá atualizar o serviço automaticamente"
 
