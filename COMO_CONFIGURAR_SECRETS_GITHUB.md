@@ -77,7 +77,7 @@ Se você ainda não criou a política IAM, siga estes passos:
 1. No IAM, clique em **"Policies"** (Políticas)
 2. Clique em **"Create policy"**
 3. Clique na aba **"JSON"**
-4. Cole o seguinte conteúdo (já está pronto, não precisa ajustar nada):
+4. Cole o seguinte conteúdo (ajuste o `ACCOUNT_ID`):
 
 ```json
 {
@@ -117,8 +117,6 @@ Se você ainda não criou a política IAM, siga estes passos:
   ]
 }
 ```
-
-**Nota**: O JSON usa `*` (wildcard) nos ARNs, então funciona para qualquer conta AWS. Não precisa ajustar nada!
 
 5. Clique em **"Next"**
 6. Nome da política: `IsCoolGPT-GitHubActionsPolicy`
