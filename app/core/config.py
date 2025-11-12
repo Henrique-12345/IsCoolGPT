@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     
     # OpenAI Settings
     OPENAI_API_KEY: str
-    OPENAI_MODEL: str = "gpt-3.5-turbo"  # Use gpt-4 se tiver acesso
+    OPENAI_MODEL: str = "gpt-4"
     OPENAI_MAX_TOKENS: int = 1000
     OPENAI_TEMPERATURE: float = 0.7
     

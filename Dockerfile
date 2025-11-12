@@ -28,6 +28,7 @@ COPY --from=builder /root/.local /root/.local
 
 # Copiar código da aplicação
 COPY ./app /app/app
+COPY ./frontend /app/frontend
 
 # Adicionar binários ao PATH
 ENV PATH=/root/.local/bin:$PATH

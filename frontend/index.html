@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IsCoolGPT • Assistente de Estudos</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">🎓</div>
+        <div>
+          <h1>IsCoolGPT</h1>
+          <p>Assistente inteligente para alunos de Ciência da Computação</p>
+        </div>
+      </div>
+      <div class="api-config">
+        <label for="apiBaseUrl">URL da API</label>
+        <input
+          id="apiBaseUrl"
+          type="text"
+          value="http://localhost:8000"
+          placeholder="https://seu-endpoint.com"
+        />
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="chat-card">
+        <form id="chatForm" class="chat-form">
+          <div class="form-row">
+            <label for="subject">Disciplina</label>
+            <select id="subject" name="subject">
+              <option value="">Selecione uma disciplina</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="context">Contexto (opcional)</label>
+            <textarea
+              id="context"
+              name="context"
+              rows="2"
+              placeholder="Ex: Estou estudando fila e pilha para a prova..."
+            ></textarea>
+          </div>
+
+          <div class="form-row">
+            <label for="message">Pergunta</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              required
+              placeholder="Qual a diferença entre fila e pilha?"
+            ></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Enviar pergunta</button>
+            <button type="button" id="clearChat" class="btn-secondary">Limpar histórico</button>
+          </div>
+        </form>
+
+        <div class="chat-output" id="chatOutput" aria-live="polite">
+          <p class="placeholder">Envie uma pergunta para ver a resposta do IsCoolGPT.</p>
+        </div>
+      </section>
+
+      <aside class="info-card">
+        <h2>Como funciona?</h2>
+        <p>
+          Esta é uma interface simples para interagir com a API FastAPI do projeto
+          <strong>IsCoolGPT</strong>. Preencha os campos, envie sua pergunta e veja as
+          respostas geradas pelo modelo do ChatGPT configurado no backend.
+        </p>
+        <ul>
+          <li>Backend disponível em <code>/api/v1/chat</code></li>
+          <li>Health check em <code>/health</code></li>
+          <li>Lista de disciplinas em <code>/api/v1/subjects</code></li>
+        </ul>
+
+        <h3>Dicas</h3>
+        <p>
+          - Para ambiente local, use <code>http://localhost:8000</code>.<br />
+          - Em produção, substitua pela URL pública do Load Balancer.<br />
+          - A chave da OpenAI deve estar configurada no backend.
+        </p>
+      </aside>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
