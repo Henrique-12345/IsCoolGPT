@@ -14,7 +14,7 @@ app = FastAPI(
     description="API do assistente inteligente para estudantes",
     version="1.0.0",
     docs_url="/docs",
-    redoc_url="/redoc"
+    redoc_url="/redoc",
 )
 
 # CORS Middleware
@@ -33,11 +33,7 @@ app.include_router(router, prefix="/api/v1")
 @app.get("/api")
 async def api_root():
     """InformaÃ§Ãµes bÃ¡sicas sobre a API."""
-    return {
-        "message": "IsCoolGPT API",
-        "version": "1.0.0",
-        "docs": "/docs"
-    }
+    return {"message": "IsCoolGPT API", "version": "1.0.0", "docs": "/docs"}
 
 
 @app.get("/health")
@@ -57,6 +53,5 @@ if __name__ == "__main__":
         "app.main:app",
         host=settings.API_HOST,
         port=settings.API_PORT,
-        reload=settings.ENVIRONMENT == "development"
+        reload=settings.ENVIRONMENT == "development",
     )
-
