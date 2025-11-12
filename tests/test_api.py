@@ -9,8 +9,16 @@ client = TestClient(app)
 
 
 def test_root():
-    """Testa endpoint raiz"""
+    """Testa endpoint raiz (frontend HTML)"""
     response = client.get("/")
+    assert response.status_code == 200
+    assert "text/html" in response.headers.get("content-type", "")
+    assert "<!DOCTYPE html>" in response.text or "<html" in response.text.lower()
+
+
+def test_api_root():
+    """Testa endpoint /api"""
+    response = client.get("/api")
     assert response.status_code == 200
     assert "message" in response.json()
 
