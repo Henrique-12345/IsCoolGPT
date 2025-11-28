@@ -20,8 +20,9 @@ WORKDIR /app
 
 # Instalar curl para healthcheck
 RUN apt-get update && apt-get install -y \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+curl \
+ca-certificates \
+&& rm -rf /var/lib/apt/lists/*
 
 # Copiar dependências instaladas do stage builder
 COPY --from=builder /root/.local /root/.local
