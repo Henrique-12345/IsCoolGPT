@@ -2,6 +2,7 @@
 Serviço de integração com OpenAI
 """
 
+
 from openai import AsyncOpenAI
 from app.core.config import settings
 from typing import Optional
