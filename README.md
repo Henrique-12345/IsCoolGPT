@@ -1,4 +1,4 @@
-﻿#  IsCoolGPT - Assistente Inteligente para Estudantes
+#  IsCoolGPT - Assistente Inteligente para Estudantes
 
 Aplicação de assistente inteligente que auxilia estudantes em suas disciplinas utilizando modelos de linguagem avançados (ChatGPT).
 
