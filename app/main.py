@@ -1,6 +1,6 @@
 ﻿"""
 IsCoolGPT - Assistente Inteligente para Estudantes
-AplicaÃ§Ã£o FastAPI para auxiliar estudantes em suas disciplinas
+Aplicação FastAPI para auxiliar estudantes em suas disciplinas
 """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
