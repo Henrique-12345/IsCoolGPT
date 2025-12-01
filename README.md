@@ -94,7 +94,7 @@ app/
  api/
  routes.py          # Rotas da API
  core/
- config.py          # ConfiguraÃ§Ãµes
+ config.py          # Configurações
  models/
  schemas.py         # Modelos Pydantic
  services/
