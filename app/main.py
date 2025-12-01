@@ -1,6 +1,6 @@
 ﻿"""
 IsCoolGPT - Assistente Inteligente para Estudantes
-AplicaÃ§Ã£o FastAPI para auxiliar estudantes em suas disciplinas
+Aplicação FastAPI para auxiliar estudantes em suas disciplinas
 """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -20,7 +20,7 @@ app = FastAPI(
 # CORS Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Em produÃ§Ã£o, especificar domÃ­nios permitidos
+    allow_origins=["*"],  # Em produção, especificar domínios permitidos
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -32,7 +32,7 @@ app.include_router(router, prefix="/api/v1")
 
 @app.get("/api")
 async def api_root():
-    """InformaÃ§Ãµes bÃ¡sicas sobre a API."""
+    """Informações básicas sobre a API."""
     return {"message": "IsCoolGPT API", "version": "1.0.0", "docs": "/docs"}
 
 
@@ -42,7 +42,7 @@ async def health_check():
     return {"status": "healthy", "service": "iscoolgpt-api"}
 
 
-# Servir frontend estÃ¡tico (HTML/CSS/JS)
+# Servir frontend estático (HTML/CSS/JS)
 app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
 
 
