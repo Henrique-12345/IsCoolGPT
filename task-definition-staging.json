@@ -4,11 +4,11 @@
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "256",
   "memory": "512",
-  "executionRoleArn": "arn:aws:iam::ACCOUNT_ID:role/IsCoolGPT-ECSTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::321528231758:role/IsCoolGPT-ECSTaskExecutionRole",
   "containerDefinitions": [
     {
       "name": "iscoolgpt-api",
-      "image": "ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/iscoolgpt:staging-latest",
+      "image": "321528231758.dkr.ecr.us-east-1.amazonaws.com/iscoolgpt:staging-latest",
       "essential": true,
       "portMappings": [
         {
@@ -29,7 +29,7 @@
       "secrets": [
         {
           "name": "OPENAI_API_KEY",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:ACCOUNT_ID:secret:iscoolgpt/openai-api-key"
+          "valueFrom": "arn:aws:secretsmanager:us-east-1:321528231758:secret:iscoolgpt/openai-api-key"
         }
       ],
       "logConfiguration": {
